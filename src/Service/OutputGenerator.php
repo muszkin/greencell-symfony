@@ -21,7 +21,7 @@ class OutputGenerator
     function writeOutput(DateTime $date, int $numWords, int $minLetters, int $maxLetters): void
     {
         $generatorLogFile = fopen("generator.log", 'a+');
-        $wordsLogFile = fopen("words.log", 'w+');
+        $wordsLogFile = fopen("words.txt", 'w+');
         $logEntry = sprintf("[%s] Total words: %d, words length range (min,max): (%d,%d)\n", $date->format("Y-m-d H:i:s"), $numWords, $minLetters, $maxLetters);
         fwrite($generatorLogFile, $logEntry);
         fclose($generatorLogFile);
