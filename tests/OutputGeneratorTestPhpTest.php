@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class OutputGeneratorTestPhpTest extends TestCase
 {
-    public function testWriteOutput()
+    public function testWriteOutput(): void
     {
         $writeOutput = new OutputGenerator(new WordsGenerator(new LettersGenerator())); //should be mocked, but in this application size it does not matter.
 
@@ -29,10 +29,10 @@ class OutputGeneratorTestPhpTest extends TestCase
         array_pop($logEntries); // Removing last empty line
         $lastLogEntry = array_pop($logEntries);
 
-        $this->assertEquals($logEntry, $lastLogEntry, "Last log entry should math with parameters. Log entry expected:\n{$logEntry}\nfound:\n{$lastLogEntry}");
+        self::assertEquals($logEntry, $lastLogEntry, "Last log entry should math with parameters. Log entry expected:\n{$logEntry}\nfound:\n{$lastLogEntry}");
 
         $generatedWords = explode("\n",file_get_contents("words.txt"));
         $numberOfGeneratedWords = count($generatedWords) - 1; // Removing last empty line
-        $this->assertEquals($numberOfWords, $numberOfGeneratedWords, "Number of generated words should match given parameter. Expected {$numberOfWords}, generated {$numberOfGeneratedWords}");
+        self::assertEquals($numberOfWords, $numberOfGeneratedWords, "Number of generated words should match given parameter. Expected {$numberOfWords}, generated {$numberOfGeneratedWords}");
     }
 }
